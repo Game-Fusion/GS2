@@ -2724,7 +2724,7 @@ end
 --The first thing done is deciding what features we actually have, given the screen size
 if w < 7 or h < 4 then
 	--NPaintPro simply doesn't work at certain configurations
-	shell.run("clear")
+	term.clear()
 	print("Screen too small")
 	os.pullEvent("key")
 	return
@@ -2734,7 +2734,7 @@ determineAvailableServices()
  
 --There is no b&w support for NPP.
 if not term.isColour() then
-	shell.run("clear")
+	term.clear()
 	print("NPaintPro\nBy NitrogenFingers\n\nNPaintPro can only be run on advanced "..
 	"computers. Please reinstall on an advanced computer.")
     return
@@ -2824,4 +2824,4 @@ init()
 handleEvents()
  
 term.setBackgroundColour(colours.black)
-shell.run("clear")
+term.clear()
