@@ -1,0 +1,23 @@
+term.setBackgroundColour(colours.green)
+term.setTextColour(colours.white)
+term.clear()
+center(2,"System Settings")
+term.setBackgroundColour(colours.red)
+center(4," Customise Main Menu ")
+term.setBackgroundColour(colours.red)
+center(6,"Modify Files")
+term.setBackgroundColour(colours.green)
+center(14,"Click here to Quit")
+ 
+while true do
+local evt, button, x, y = os.pullEvent()
+  if evt == "mouse_click" then
+  if y == 4 then shell.run("edit browser")
+   shell.run("GS2/Settings")
+     elseif y == 14 then
+     term.clear()
+     shell.run("shell")
+     else end
+       end
+     end
+    end
