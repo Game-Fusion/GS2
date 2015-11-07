@@ -1,0 +1,10 @@
+term.setBackgroundColour(colours.red)
+term.setTextColour(colours.white)
+term.clear()
+while true do if fs.exists("/disk/") then graphix.center(8,"Installing...")
+shell.run("cp disk/* GS2/GamesApps/")
+center(10,"Installed!")
+else center(8,"No disk found!")
+sleep(3)
+shell.run("/browser")
+end
