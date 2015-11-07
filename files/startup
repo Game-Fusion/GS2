@@ -25,7 +25,6 @@ end
         centerSlow(10,"Please use GameStation 2 on an advanced computer!")
          sleep(3)
           term.clear()
-          end
       else term.setTextColour(colours.white)
        term.setBackgroundColour(colours.red)
        term.clear()
@@ -37,3 +36,4 @@ end
             center(7,"The Ultimate in CC Consoles.")
            sleep(2.5)
           shell.run("browser")
+        end
