@@ -37,4 +37,3 @@ end
             center(7,"The Ultimate in CC Consoles.")
            sleep(2.5)
           shell.run("browser")
-         end
