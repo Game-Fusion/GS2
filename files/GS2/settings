@@ -13,7 +13,6 @@ while true do
 local evt, button, x, y = os.pullEvent()
   if evt == "mouse_click" then
   if y == 4 then shell.run("edit browser")
-   shell.run("GS2/Settings")
      elseif y == 14 then
      term.clear()
      shell.run("shell")
