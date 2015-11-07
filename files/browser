@@ -17,13 +17,14 @@ term.setBackgroundColour(colours.red)
       term.setTextColor(colors.blue)
      term.setBackgroundColor(colors.white)
     center(3," Games and Apps ")
-     center(5," Install Game from Disk ")
+     center(5," Install ")
       center(7," Strafe ")
-     center(9," Power Off ")
+     center(9," Shutdown ")
     center(11," Information ")
    center(13," Settings ")
   center(15," Software Update ")
-end
+center(17," GS1 Backwards Compatibility ")
+end menu()
 
 function strafe()
 function split(pString, pPattern)
@@ -295,11 +296,11 @@ end
 while true do local evt, button, x, y = os.pullEvent("mouse_click")
   if y == 3 then shell.run("/GS2/gamesandapps")
   elseif y == 5 then shell.run("/GS2/installfromdisk")
-   elseif y == 7 then shell.run("/GS2/strafe")
+   elseif y == 7 then strafe()
    elseif y == 9 then shell.run("/GS2/poweroff")
     elseif y == 11 then shell.run("/GS2/info")
      elseif y == 13 then shell.run("/GS2/settings")
       elseif y == 15 then shell.run("/GS2/updater")
-       else shell.run("/browser")
+       elseif y == 17 then shell.run("/GS2/gs1")
+       else menu() end
       end
-     end
