@@ -1,0 +1,72 @@
+local data = { }
+local xmax = 3
+local ymax = 3
+local step = 1
+ 
+function create(xx, yx, stp, set)
+        local x = 1
+        local y = 1
+        xmax = xx
+        ymax = yx
+        step = stp
+        for x=1,xmax,step do
+                for y=1,ymax,step do
+                        local ydat = data[x]
+                        if ydat == nil then
+                                data[x] = {set}
+                        else
+                                ydat[y] = set
+                        end
+                end
+        end
+end
+ 
+function set(x, y, set)
+        local ndat = data[x]
+        ndat[y] = set
+end
+ 
+function get(x, y)
+        local ndat = data[x]
+        local dat = ndat[y]
+        return dat
+end
+ 
+function getinput()
+        input = io.read()
+        return input
+end
+ 
+function draw(xl, yl, xh, yh)
+        xl = checkx(xl)
+        xh = checkx(xh)
+        yl = checky(yl)
+        yh = checky(yh)
+        for x=xl,xh,step do
+                local line = ""
+                for y=yl,yh,step do
+                        line = line..get(x,y)
+                end
+                print(line.." \n")
+        end
+end
+ 
+function checkx(x)
+        if x < 1 then
+                return 1
+        elseif x > xmax then
+                return xmax
+        else
+                return x
+        end
+end
+ 
+function checky(y)
+        if y < 1 then
+                return 1
+        elseif y > ymax then
+                return ymax
+        else
+                return y
+        end
+end
