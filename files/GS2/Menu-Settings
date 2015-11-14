@@ -1,0 +1,48 @@
+function center(y,string)
+ local w,h = term.getSize()
+ local x = (w/2)-(#string/2)
+ term.setCursorPos(x,y)
+ print(string)
+end
+
+term.setBackgroundColour(colours.blue)
+term.setTextColour(colours.white)
+term.clear()
+center(2,"Menu Settings")
+term.setBackgroundColour(colours.red)
+center(4," Default Theme ")
+term.setBackgroundColour(colours.blue)
+term.setBackgroundColour(colours.blue)
+center(6,"Themes:")
+term.setBackgroundColour(colours.red)
+center(8," Emerald Green ")
+center(10,"    Red Sea    ")
+term.setBackgroundColour(colours.white)
+term.setTextColour(colours.red)
+center(14," Click here to go to settings ")
+ 
+function makeFile(barColour,textColour,bgColour,topColour)
+  f = fs.open("/.theme","w")
+  f.writeLine("barColour = "..barColour)
+  f.writeLine("textColour = "..textColour)
+  f.writeLine("bgColour = "..bgColour)
+  f.writeLine("topColour = "..topColour)
+  f.close()
+end
+
+while true do
+local evt, button, x, y = os.pullEvent()
+  if evt == "mouse_click" then
+  if y == 4 then
+     makeFile(colours.grey,colours.white,colours.lightGrey,colours.blue)
+   elseif y == 8 then term.clear()
+     makeFile(colours.green,colours.white,colours.lime,colours.blue)    
+     shell.run("/GS2/Menu-Settings")
+    elseif y == 10 then term.clear()
+     makeFile(colours.orange,colours.white,colours.red,colours.blue)
+     shell.run("/GS2/Menu-Settings")
+      elseif y == 14 then
+       shell.run("/GS2/Settings")
+      else end
+      end
+    end
