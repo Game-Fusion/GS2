@@ -17,4 +17,3 @@ while true do local evt, button, x, y = os.pullEvent()
      elseif y == 14 then shell.run("/browser")
      else end
        end
-     end
