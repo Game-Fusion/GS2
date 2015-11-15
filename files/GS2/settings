@@ -19,4 +19,3 @@ while true do local evt, button, x, y = os.pullEvent()
      else end
        end
      end
-    end
