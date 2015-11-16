@@ -1,0 +1,45 @@
+        term.setBackgroundColour(colours.blue)
+        term.clear()
+        term.setCursorPos(1,1)
+        term.setTextColor(colors.white)
+        while true do
+          programs = fs.list("/GS2/GamesApps")
+          term.setCursorPos(1,1)
+          term.clear()
+          for i=1,#programs do
+            term.setTextColor(colors.white)
+            term.setCursorPos(1,i-scroll)
+            print(programs[i])
+          end
+          if #programs == 0 then
+            term.setTextColor(colors.white)
+            term.setCursorPos(1,1)
+            print("You have no games.")
+          end
+          term.setCursorPos(1,19)
+          term.setTextColor(colors.white)
+          write("Click a program to run it. Space to exit.")
+          os.startTimer(0.3)
+          event,a,b,c,d = os.pullEvent()
+          if (event == "key" and a == 57) then
+            term.clear()
+            shell.run("/browser")
+            break
+          end
+          if event == "mouse_scroll" then
+            scroll = scroll + a
+            if scroll > 0 then
+              scroll = 0
+            end
+          end
+          if event == "mouse_click" then
+            if c <= #programs then
+              c = c - scroll
+              print(programs[c])
+              term.setTextColor(colors.white)
+              term.clear()
+              term.setCursorPos(1,1)
+              shell.run("/GS2/GamesApps/"..programs[c])
+            end
+          end
+         end
