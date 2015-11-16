@@ -42,7 +42,7 @@ local evt, button, x, y = os.pullEvent()
      makeFile(colours.orange,colours.white,colours.red,colours.blue)
      shell.run("/GS2/Menu-Settings")
       elseif y == 14 then
-       shell.run("/GS2/Settings")
+       shell.run("/GS2/settings")
       else end
       end
     end
