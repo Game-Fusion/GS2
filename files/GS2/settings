@@ -10,10 +10,10 @@ center(14,"Click here to Quit")
  
 while true do local evt, button, x, y = os.pullEvent()
   if evt == "mouse_click" then
-  if y == 4 then shell.run("Menu-Settings")
+  if y == 4 then shell.run("/GS2/Menu-Settings")
    elseif y == 6 then term.clear()
    term.setCursorPos(1,1)
-   shell.run("shell")
+   shell.run("/rom/programs/shell")
      elseif y == 14 then shell.run("/browser")
      else end
        end
