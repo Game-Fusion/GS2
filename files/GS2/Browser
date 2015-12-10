@@ -460,4 +460,7 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
    elseif y == 4 then menu()
     else end
      end
-end
+    end
+   end
+  end
+menu
