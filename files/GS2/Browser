@@ -23,6 +23,16 @@ term.setBackgroundColour(colours.red)
     center(11," Information ")
    center(13," Settings ")
   center(15," Software Update ")
+  
+  while true do local evt, button, x, y = os.pullEvent("mouse_click")
+  if y == 3 then gamesApps()
+  elseif y == 5 then installDisk()
+   elseif y == 7 then strafe()
+   elseif y == 9 then powerOff()
+    elseif y == 11 then systemInfo()
+     elseif y == 13 then settings()
+      elseif y == 15 then updater()
+      else end
  end
 menu()
 
@@ -451,13 +461,3 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
     else end
      end
 end
-while true do local evt, button, x, y = os.pullEvent("mouse_click")
-  if y == 3 then gamesApps()
-  elseif y == 5 then installDisk()
-   elseif y == 7 then strafe()
-   elseif y == 9 then powerOff()
-    elseif y == 11 then systemInfo()
-     elseif y == 13 then settings()
-      elseif y == 15 then updater()
-       else menu() end
-      end
