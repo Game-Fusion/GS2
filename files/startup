@@ -41,5 +41,5 @@ end
             sleep(1.2)
             center(7,"The Ultimate in CC Consoles.")
            sleep(2.25)
-          shell.run("browser")
+          shell.run("/GS2/Browser")
         end
