@@ -4,6 +4,7 @@ function center(y,string)
   term.setCursorPos(x,y)
   print(string)
 end
+
 function centerSlow(y,string)
   local w,h = term.getSize()
   local x = (w/2)-(#string/2)
@@ -13,18 +14,23 @@ end
 
   if peripheral.find("monitor") then shell.run("monitor right startup")
    shell.run("monitor left startup")
-    shell.run("monitor top tartup")
+    shell.run("monitor top startup")
      shell.run("monitor bottom startup")
       shell.run("monitor front startup")
        shell.run("monitor back startup")
-          elseif not term.isColor then
+          elseif not term.isColour then
       term.setBackgroundColour(colours.white)
       term.setTextColour(colours.black)
       term.clear()
-        centerSlow(8,"                        Whoops!")
+        centerSlow(8,"Whoops!")
         centerSlow(10,"Please use GameStation 2 on an advanced computer!")
          sleep(3)
+          term.setBackgroundColour(colours.black)
           term.clear()
+          term.setCursorPos(1,1)
+          error()
+          
+          
       else term.setTextColour(colours.white)
        term.setBackgroundColour(colours.red)
        term.clear()
@@ -34,6 +40,6 @@ end
             centerSlow(6,"GameStation 2.")
             sleep(1.2)
             center(7,"The Ultimate in CC Consoles.")
-           sleep(2.5)
+           sleep(2.25)
           shell.run("browser")
         end
