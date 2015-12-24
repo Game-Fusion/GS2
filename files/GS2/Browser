@@ -32,7 +32,7 @@ term.setBackgroundColour(colours.red)
     elseif y == 11 then systemInfo()
      elseif y == 13 then settings()
       elseif y == 15 then updater()
-      else end
+       end
  end
 menu()
 
