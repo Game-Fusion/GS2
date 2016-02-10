@@ -39,7 +39,7 @@ end
           term.clear()
             centerSlow(6,"GameStation 2.")
             sleep(1.2)
-            center(7,"The Ultimate in CC Consoles.")
+            center(7,"The Ultimate CC Console.")
            sleep(2.25)
           shell.run("/GS2/Browser")
         end
