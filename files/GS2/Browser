@@ -463,4 +463,4 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
     end
    end
   end
-menu
+menu()
