@@ -12,6 +12,16 @@ function centerSlow(y,string)
   textutils.slowPrint(string)
 end
 
+-- loading APIs beforehand so games and apps don't need to!
+
+os.loadAPI("/GS2/APIs/CGE")
+os.loadAPI("/GS2/APIs/gameapi")
+os.loadAPI("/GS2/APIs/gameutils")
+os.loadAPI("/GS2/APIs/npaintpro")
+os.loadAPI("/GS2/APIs/surface")
+os.loadAPI("/GS2/APIs/multinet")
+
+-- now it's time for code
   if peripheral.find("monitor") then shell.run("monitor right startup")
    shell.run("monitor left startup")
     shell.run("monitor top startup")
@@ -35,10 +45,10 @@ end
        term.setBackgroundColour(colours.red)
        term.clear()
        centerSlow(6,"Game Fusion Presents...")
-         sleep(2.1)
+         sleep(1.5)
           term.clear()
             centerSlow(6,"GameStation 2.")
-            sleep(1.2)
+            sleep(1)
             center(7,"The Ultimate CC Console.")
            sleep(2.25)
           shell.run("/GS2/Browser")
