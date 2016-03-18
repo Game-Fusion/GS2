@@ -1,6 +1,18 @@
 # GS2
-GameStation 2's Official Github Repo.
 
-GameStation 2 was never fully finished. We're about to change that.
+Features of GS2:
 
-Now with themes, updater, and even more, GS2 is back and better than ever.
+• Play online with GS2 Net Play!
+
+• Download an abundance of games using Strafe
+
+• Dig into the colossal GS2 library
+
+• Customise to your heart's desire
+
+• Enjoy the GS2's rich support from Game Fusion
+
+And more!
+
+# Notice: The project's current status is undecided - it may/may not continue to be developed.
+We encourage development of GameStation 2, however we are unsure of it's current status and whether it will cease to exist or not.
