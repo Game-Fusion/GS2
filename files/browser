@@ -11,6 +11,7 @@ print("  Info     ")
 print("  Strafe   ")
 print("  Install  ")
 print("  Shutdown ")
+end
 
   while true do render()
   local evt, button, x, y = os.pullEvent("mouse_click")
