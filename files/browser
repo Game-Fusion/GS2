@@ -22,6 +22,7 @@ print("           ")
 print("           ")
 print("           ")
 print("           ")
+print("           ")
 end
 
   while true do render()
