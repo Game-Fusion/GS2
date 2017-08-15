@@ -7,11 +7,12 @@ term.clearLine()
 center(1,"GameStation 2")
 term.setCursorPos(1,2)
 print("            ")
-print("  Games     ")
+print("  Disk      ")
 print("  Info      ")
 print("  Strafe    ")
-print("  Install   ")
+print("  Vinyl     ")
 print("  Shutdown  ")
+print("            ")
 print("            ")
 print("            ")
 print("            ")
@@ -25,14 +26,13 @@ print("            ")
 print("            ")
 end
 
-  while true do render()
+while true do render()
   local evt, button, x, y = os.pullEvent("mouse_click")
-  if y == 3 then shell.run("/GS2/Games")
+  if y == 3 then shell.run("/GS2/Disk")
   elseif y == 4 then shell.run("/GS2/Info")
   elseif y == 5 then shell.run("/GS2/Strafe")
-  elseif y == 6 then shell.run("/GS2/Disk")
-  elseif y == 7 then shell.run("/GS2/Vinyl")
-  elseif y == 8 then term.setBackgroundColour(colours.white)
+  elseif y == 6 then shell.run("/GS2/Vinyl")
+  elseif y == 7 then term.setBackgroundColour(colours.white)
   term.clear()
   center(8,"Shutting Down...")
   sleep(0.7)
@@ -43,5 +43,6 @@ end
   term.clear()
   sleep(0.2)
   os.shutdown()
-  else end
-  end
+  else 
+ end
+end
