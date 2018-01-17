@@ -140,3 +140,4 @@ Tries to retrieve the location.
 On success, returns the location of the modem.
 On failure (if no responses are received after timeout, by default 2), returns nil.
 If debug is true, debug messages are printed.
+--]]
