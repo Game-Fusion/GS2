@@ -1,0 +1,91 @@
+--[[
+From ComputerCraft Wiki:
+Vectors act much like tables, storing the coordinate data with labels "x", "y" and "z". However, it can be worthwhile to use vectors instead of tables in certain situations.
+
+
+Among other things, vectors can be useful to aid in creating navigation algorithms using GPS coordinates.
+
+To transform GPS quickly into vector format, simply use:
+
+local a = vu.new(gps.locate())
+Then, getting the displacements between a turtle position and a desired location becomes:
+
+local b = vu.new(20, 85, 40)
+local c = a - b
+--displacement in the x direction:  c.x
+--displacement in the y direction:  c.y
+--displacement in the z direction:  c.z
+By making use of vectors, code can be cleaner and easier to follow.
+
+--------------------------------------------------------------------
+
+From Advanced Vectors, code modified for VU:
+
+Advanced Vector API by Tomass1996
+
+Vector 'Object' Functions And Fields:
+  vu.x                                -- Vectors X component
+  vu.y                                -- Vectors Y component
+  vu.z                                -- Vectors Z component
+  vu:add(otherVector)                 -- Component-wise addition
+  vu:scalarAdd(n)                     -- Scalar addition
+  vu:subtract(otherVector)            -- Component-wise subtraction
+  vu:scalarSubtract(n)                -- Scalar subtraction
+  vu:multiply(otherVector)            -- Component-wise multiplication
+  vu:scalarMultiply(n)                -- Scalar multiplication
+  vu:divide(otherVector)              -- Component-wise division
+  vu:scalarDivide(n)                  -- Scalar division
+  vu:length()                         -- Get the length of the vector
+  vu:lengthSq()                       -- Get the length ^ 2 of the vector
+  vu:distance(otherVector)            -- Get the distance away from a vector
+  vu:distanceSq(otherVector)          -- Get the distance away from a vector, squared
+  vu:normalize()                      -- Get the normalized vector
+  vu:dot(otherVector)                 -- Get the dot product of vector and otherVector
+  vu:cross(otherVector)               -- Get the cross product of vector and otherVector
+  vu:containedWithin(minVec, maxVec)  -- Check to see if vector is contained within minVec and maxVec
+  vu:clampX(min, max)                 -- Clamp the X component
+  vu:clampY(min, max)                 -- Clamp the Y component
+  vu:clampZ(min, max)                 -- Clamp the Z component
+  vu:floor()                          -- Rounds all components down
+  vu:ceil()                           -- Rounds all components up
+  vu:round()                          -- Rounds all components to the closest integer
+  vu:absolute()                       -- Vector with absolute values of components
+  vu:isCollinearWith(otherVector)     -- Checks to see if vector is collinear with otherVector
+  vu:getIntermediateWithX(other, x)   -- New vector with given x value along the line between vector and other, or nil if not possible
+  vu:getIntermediateWithY(other, y)   -- New vector with given y value along the line between vector and other, or nil if not possible
+  vu:getIntermediateWithZ(other, z)   -- New vector with given z value along the line between vector and other, or nil if not possible
+  vu:rotateAroundX(angle)             -- Rotates vector around the x axis by the specified angle(radians)
+  vu:rotateAroundY(angle)             -- Rotates vector around the y axis by the specified angle(radians)
+  vu:rotateAroundZ(angle)             -- Rotates vector around the z axis by the specified angle(radians)
+  vu:clone()                          -- Returns a new vector with same component values as vector
+  vu:equals(otherVector)              -- Checks to see if vector and otherVector are equal
+  vu:tostring()                       -- Returns the string representation of vector "(x, y, z)"
+
+Vector 'Object' Metatable Overrides:      -- [x, y, z] represents a vector object in these examples, not irl
+  To String             -- tostring will get the string representation
+                         ie.    tostring([1, 2, 3])     -->     "(1, 2, 3)"
+  Unary Minus           -- Using unary minus on a vector will result in the negative of vector
+                         ie.    -[1, -2, 3]             -->     [-1, 2, -3]
+  Addition              -- Can add two vectors or vector and number with +
+                         ie.    [1, 2, 3] + [4, 5, 6]   -->     [5, 7, 9]
+                                [1, 2, 3] + 3           -->     [4, 5, 6]
+  Subtraction           -- Can subtract two vectors or vector and number with -
+                         ie.    [4, 5, 6] - [1, 2, 3]   -->     [3, 3, 3]
+                                [4, 5, 6] - 3           -->     [1, 2, 3]
+  Multiplication        -- Can multiply two vectors or vector and number with *
+                         ie.    [1, 2, 3] * [4, 5, 6]   -->     [4, 10, 18]
+                                [1, 2, 3] * 3           -->     [3, 6, 9]
+  Division              -- Can divide two vectors or vector and number with /
+                         ie.    [4, 10, 18] / [1, 2, 3] -->     [4, 5, 6]
+                                [3, 6, 9] / 3           -->     [1, 2, 3]
+  Equality              -- Can check if two vectors are the same with ==
+                         ie.    [4, 5, 6] == [4, 5, 6]  -->     true
+                                [4, 5, 6] == [4, 99, 6] -->     false
+
+Vector API functions (Can be used in VU by replacing "Vector" with "VU":
+  Vector.getMinimum(v1, v2)             -- Gets the minimum components of two vectors
+  Vector.getMaximum(v1, v2)             -- Gets the maximum components of two vectors
+  Vector.getMidpoint(v1, v2)            -- Gets the midpoint of two vectors
+  Vector.isVector(v)                    -- Checks whether v is a vector created by this api
+  Vector.new(x, y, z)                   -- Creates a new vector object with the component values
+--]]
