@@ -78,6 +78,10 @@ end
 
 run = os.run
 
+shRun = shell.run
+--Careful not to confuse these two
+--Use shRun unless you want a special environment
+
 pullEvt = os.pullEvent
 
 pullEvtRaw = os.pullEventRaw
