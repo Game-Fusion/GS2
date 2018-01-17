@@ -1,0 +1,131 @@
+--[[
+Graphics Synthesizer API
+
+Based on Commander 64 GPU API
+with some additions and changes.
+By TheMrIron2
+--]]
+
+local version = 1.0
+
+-- Term functions
+
+blit = term.blit
+
+clr = term.clear
+
+function center(y, str)
+  local w,h = term.getSize()
+  local x = (w/2)-(#str/2)
+  term.setCursorPos(x,y)
+  print(str)
+end
+
+cursPos = term.setCursorPos
+
+cursBlink = term.setCursorBlink
+
+function centerSlow(y, str)
+  local w,h = term.getSize()
+  local x = (w/2)-(#str/2)
+  term.setCursorPos(x,y)
+  textutils.slowPrint(str)
+end
+
+write = term.write
+
+-- Colour related term functions
+
+bg = term.setBackgroundColour
+
+function setBg(col) -- thanks to MultMine for fix
+  term.setBackgroundColour(colours[col])
+end
+
+function setTxt(col)
+  term.setTextColour(colours[col])
+end
+
+function setText(col)
+  term.setTextColour(colours[col])
+end
+
+function clrBg(back)
+  term.setBackgroundColour(colours[back])
+  term.clear()
+end
+
+function clrLine(y)
+  term.setCursorPos(1,y)
+  term.clearLine()
+end
+
+-- Colour functions
+
+combineColour = colours.combine
+
+combineColor = colors.combine
+-- combining outputs the bitwise result
+
+subtractCol = colours.subtract
+
+-- Window/display commands
+
+winSize = term.getSize
+
+getSize = term.getSize
+
+newWindow = window.create
+
+current = term.current
+
+redirect = term.redirect
+
+function setVis(bool) -- both term.current and term.setVisible
+  local func = term.current().setVisible
+  if func then
+    func(bool)
+  end
+end
+
+function redraw()
+  local func = term.current().redraw
+  if func then
+    func()
+  end
+end
+
+function monTxtScale(size)
+  local func = term.current().setTextScale
+  if func then
+    func(size)
+  end
+end
+
+-- Paintutils derived commands
+
+loadImg = paintutils.loadImage
+
+drawImg = paintutils.drawImage
+
+function drawPixel(x, y, col)
+  paintutils.drawPixel(x, y, colours[col])
+end
+
+function drawLine(x1, y1, x2, y2, col)
+  paintutils.drawLine(x1, y1, x2, y2, colours[col])
+end
+
+function drawBox(x1, y1, x2, y2, col)
+  paintutils.drawBox(x1, y1, x2, y2, colours[col])
+end
+
+function drawFilledBox(x1, y1, x2, y2, col)
+  paintutils.drawFilledBox(x1, y1, x2, y2, colours[col])
+end
+
+-- Textutils commands
+
+slowWrite = textutils.slowWrite
+
+slowPrint = textutils.slowPrint
