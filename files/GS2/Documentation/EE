@@ -20,6 +20,7 @@ include serialization and timers.
 Full command documentation follows.
 
 
+---------------------------------------
 
 
 ee.randomInt(numberStart, numberEnd)
@@ -73,6 +74,35 @@ Relabels the specified tab to use the specified title.
 ee.tGetFocus()
 Returns the ID of the currently focused tab.
 
+ee.run(environment, program)
+An advanced way of starting programs.
+A started program will have a given environment table which determines what functions it has available, as well as any variables it will be able to access by default.
+You may prefer to use shell.run unless you need to do something special.
+Usage: ee.run({}, "rom/programs/shell")
+
+ee.shRun(program)
+A simpler shell run execution of a program.
+Usage: ee.shRun("startup")
+
+ee.pullEvt(targetEvent, parameter1, parameter2, ...)
+Blocks until the computer receives an event, or if targetEvent is specified, will block until an instance of target-event occurs.
+ee.pullEvt(targetEvent) returns the event and any parameters the event may have.
+If a targetEvent is specified, the computer will not break for any other events (except termination).
+
+ee.pullEvtRaw(targetEvent, parameter1, parameter2, ...)
+Advanced version of pullEvent().
+Blocks until the computer receives an event, or if targetEvent is specified, will block until an instance of targetEvent occurs.
+ee.pullEvtRaw(targetEvent) returns the event and any parameters the event may have.
+Unlike ee.pullEvt(targetEvent), this function will not raise an error if a 'terminate' event is received.
+
+ee.queueEvt(targetEvent, parameter1, parameter2, ...)
+Adds an event to the event queue with the name event and the given parameters.
+
+ee.reload()
+Reloads the EE. Useful for restarting the API for various reasons.
+
+ee.info()
+Displays API info, ie. version number and whether debug is true or false.
 ee.startTimer(timeout)
 Queues an event to be triggered after a number of seconds (timeout).
 The ID of the timer is returned from this function to differentiate multiple timers.
