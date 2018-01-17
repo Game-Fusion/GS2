@@ -2,6 +2,11 @@
 -- Powerful CPU API for GS2
 -- Based on C64 CPU v1.1
 
+local version = v1.1
+local debug = false
+
+-- Enable debug for extra info eg. telling you when EE reloads
+
 -- Basic math functionality
 
 randomInt = math.random -- Random integer between X and Y, ie. cpu.randomInt(1, 100)
@@ -70,6 +75,32 @@ end
 
 -- Other processes
 -- eg. GPS, encoding and serialization
+
+run = os.run
+
+pullEvt = os.pullEvent
+
+pullEvtRaw = os.pullEventRaw
+
+queueEvt = os.queueEvent
+
+function reload()
+  os.unloadAPI("/APIs/ee")
+  os.loadAPI("/APIs/ee")
+  if debug = true then
+  print("EE reloaded!")
+  else end
+end
+
+function info()
+  print("Emotion Engine CPU API")
+  print("API version: "...version..." ")
+  if debug = true then
+  print("Debug mode: Enabled")
+  else
+  print("Debug mode: Disabled")
+end
+end
 
 startTimer = os.startTimer
 
