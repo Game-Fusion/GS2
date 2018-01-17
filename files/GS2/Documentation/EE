@@ -1,0 +1,112 @@
+--[[
+
+This is documentation for the Emotion Engine API.
+
+The Emotion Engine API is powerful and flexible.
+Based on Commander 64's CPU API, the EE is the
+heart of the GS2 in an ideal world. It is
+capable of complete bitwise manipulation
+(replacing the Bit API) and parallel threading
+(replacing the Parallel API), which also
+does most of what Coroutines is used for -
+one exception being multishell.
+
+Speaking of multishell, the full Multishell API
+is also implemented in EE for multitasking and
+multithreading, almost eliminating the need
+for Coroutines. Other miscellaneous functions
+include serialization and timers.
+
+Full command documentation follows.
+
+
+
+
+ee.randomInt(numberStart, numberEnd)
+Random integer between X and Y
+
+ee.sqrt(number)
+Square root of a number
+
+ee.blshift(number, bits)
+Shifts a number left by a specified number of bits
+
+ee.brshift(number, bits)
+Shifts a number right arithmetically by a specified number of bits
+
+ee.blogic_rshift(number, bits)
+Shifts a number right logically by a specified number of bits
+
+ee.bxor(number1, number2)
+Computes the bitwise exclusive OR of two numbers
+
+ee.bor(number1, number2)
+Computes the bitwise inclusive OR of two numbers
+
+ee.band(number1, number2)
+Computes the bitwise AND of two numbers
+
+ee.bnot(number1, number2)
+Computes the bitwise NOT of a number.
+
+ee.waitForAny(function1, function2...)
+Runs all the functions at the same time, and stops when any of them returns.
+
+ee.waitForAll(function1, function2...)
+Runs all the functions at the same time, and stops when all of them have returned.
+
+ee.tGetTitle = multishell.getTitle(numberTagID, title)
+Relabels the specified tab to use the specified title
+
+ee.tGetCount = multishell.getCount()
+Returns the number of tabs currently being handled by the multishell system.
+
+ee.tLaunch()
+Launches a multishell.
+
+ee.tSetFocus(tabID)
+Launches the specified script in a new tab.
+
+ee.tSetTitle(numberTabID, title)
+Relabels the specified tab to use the specified title.
+
+ee.tGetFocus()
+Returns the ID of the currently focused tab.
+
+ee.startTimer(timeout)
+Queues an event to be triggered after a number of seconds (timeout).
+The ID of the timer is returned from this function to differentiate multiple timers.
+Timers are one-shot; once they have fired an event you will need to start another one if you need a recurring timer.
+
+ee.clock()
+Returns the amount of time since the in-game computer was started.
+
+ee.cancelTimer()
+Cancels a running timer, to prevent it throwing an event.
+
+ee.sleep(time)
+Waits for the specified amount of seconds.
+Minimum = 0.05s.
+If unspecified, sleep for 0.05 seconds.
+
+ee.serialize(table/string/int/boolean/nil serial)
+Returns a string representation of the data (serial) for storage or transmission.
+
+ee.unserialize(serializedData)
+Returns the data reassembled from string serializedData.
+Used mainly together with ee.serialize().
+
+ee.serializeJSON(table/string/number/boolean data [, boolean unquote keys])
+Returns a JSON representation of the data data in a form of a string. 
+Mainly for command usage.
+
+ee.urlEncode
+Makes a string safe to encode into a url.
+Spaces are replaced with +s.
+Unsafe characters such as '\', '£' and '}' are translated into ASCII code and preceded with a % for transmission.
+
+ee.locate(timeout [boolean debug])
+Tries to retrieve the location.
+On success, returns the location of the modem.
+On failure (if no responses are received after timeout, by default 2), returns nil.
+If debug is true, debug messages are printed.
