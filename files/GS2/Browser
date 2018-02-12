@@ -135,7 +135,7 @@ end
 
 local function updater()
   local w,h = gs.getSize()
-  gs.clr("red")
+  gs.clrBg("red")
   gs.setBg("white")
   gs.cursPos(1,1)
   gs.clrLine()
