@@ -31,5 +31,5 @@ else
   sleep(1)
   gs.center(7,"The ultimate CC console.")
   sleep(2)
-  shell.run("/GS2/Browser")
+  shell.run("/GS2/Mono/Browser")
 end
