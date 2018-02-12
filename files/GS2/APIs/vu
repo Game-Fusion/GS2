@@ -433,22 +433,6 @@ isVector = function(v)
   return getmetatable(v) == vmetatable
 end
 
--- Bit API for bit manipulation
-
-blshift = bit.blshift -- Shifts a number left by a specified number of bits
-
-brshift = bit.brshift -- Shifts a number right by a specified number of bits
-
-blogic_rshift = bit.blogic_rshift -- Shifts a number right logically by a specified number of bits
-
-bxor = bit.bxor -- Computes the bitwise exclusive OR of two numbers
-
-bor = bit.bor --  Computes the bitwise inclusive OR of two numbers
-
-band = bit.band -- Computes the bitwise AND of two numbers
-
-bnot = bit.bnot -- Computes the bitwise NOT of a number
-
 -- Parallel functions
 
 waitForAny = parallel.waitForAny
