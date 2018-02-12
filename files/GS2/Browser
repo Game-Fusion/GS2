@@ -8,18 +8,18 @@ local version = 2.0
 -- 2.0 REQUIRES LATEST APIs
 
 os.loadAPI("/GS2/APIs/gs")
-os.loadAPI("/GS2/APIs/ee")
+--os.loadAPI("/GS2/APIs/ee")
 
 local function powerOff()
   gs.setTxt("white")
   gs.clrBg("grey")
   gs.cursPos(1,8)
   gs.center(8,"Shutting Down...")
-  ee.sleep(1)
+  sleep(1)
   gs.clrBg("lightGrey")
-  ee.sleep(0.2)
+  sleep(0.2)
   gs.clrBg("white")
-  ee.sleep(0.1)
+  sleep(0.1)
   os.shutdown()
 end
 
@@ -69,7 +69,7 @@ end
     gs.setTxt("white")
     gs.clr()
     gs.cursPos(1,1)
-    ee.shRun("/GS2/GamesApps/"..programs[c])
+    shell.run("/GS2/GamesApps/"..programs[c])
     end
   end
 end
@@ -102,11 +102,11 @@ local function installDisk()
 while true do
   if fs.exists("/disk/") then
     gs.center(8,"Installing...")
-    ee.shRun("cp disk/* GS2/GamesApps/")
+    shell.run("cp disk/* GS2/GamesApps/")
     gs.center(10,"Installed!")
   else
     gs.center(8,"No disk found!")
-    ee.sleep(3)
+    sleep(3)
     menu()
   end
 end
@@ -126,7 +126,7 @@ while true do
     if y == 4 then
       gs.clr()
       gs.cursPos(1,1)
-      ee.shRun("/rom/programs/shell")
+      shell.run("/rom/programs/shell")
     elseif y == 14 then
       menu()
     end
@@ -155,13 +155,13 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
     gs.center(8,"Invalid Disk!")
     menu()
   elseif fs.exists("disk/boot.elf") then
-    ee.shRun("disk/boot.elf") -- Run a disk
+    shell.run("disk/boot.elf") -- Run a disk
   
   elseif fs.exists("/disk/.flashUpdate/") then
-    ee.shRun("/disk/.flashUpdate/boot.elf")
+    shell.run("/disk/.flashUpdate/boot.elf")
     gs.clr()
     gs.centerSlow(8,"Installed!")
-    ee.sleep(1)
+    sleep(1)
     menu()
    elseif y == 4 then menu()
     else end
@@ -196,7 +196,7 @@ local function menu()
     elseif y == 5 then
       installDisk()
     elseif y == 7 then
-      ee.shRun("pastebin run bj3qj1Pj")
+      shell.run("pastebin run bj3qj1Pj")
     elseif y == 9 then
       powerOff()
     elseif y == 11 then
