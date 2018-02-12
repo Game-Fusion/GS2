@@ -4,41 +4,26 @@ local gravity = {}
 
 --CREDIT TO marumaru
 function getColor ( mctag )
-        if mctag == "&0" then
-                return 32768
-        elseif mctag == "&f" then
-                return 1
-        elseif mctag == "&e" then
-                return 16
-        elseif mctag == "&a" then
-                return colors.lime
-        elseif mctag == "&b" then
-                return colors.lightBlue
-        elseif mctag == "&c" then
-                return colors.red
-        elseif mctag == "&d" then
-                return colors.pink
-        elseif mctag == "&1" then
-                return colors.blue
-        elseif mctag == "&2" then
-                return colors.green
-        elseif mctag == "&3" then
-                return colors.cyan
-        elseif mctag == "&4" then
-                return colors.red
-        elseif mctag == "&5" then
-                return colors.purple
-        elseif mctag == "&6" then
-                return colors.orange
-        elseif mctag == "&7" then
-                return colors.lightGray
-        elseif mctag == "&8" then
-                return colors.gray
-        elseif mctag == "&9" then
-                return colors.cyan
-        else
-                return 1
-        end
+	local tags = {
+		["0"] = colors.black,
+		["1"] = colors.blue,
+		["2"] = colors.green,
+		["3"] = colors.cyan,
+		["4"] = colors.red,
+		["5"] = colors.purple,
+		["6"] = colors.orange,
+		["7"] = colors.lightGray,
+		["8"] = colors.gray,
+		["9"] = colors.cyan,
+		a = colors.lime,
+		b = colors.lightBlue,
+		c = colors.red,
+		d = colors.pink,
+		e = colors.yellow,
+		f = colors.white
+	}
+        mgtag = mgtag:gsub("&","")
+	return tags[mgtag] or colors.white
 end
 
 -- CREIDT TO marumaru
@@ -57,44 +42,33 @@ function getLines(dir)
 		local cur = 1
 		local file = fs.open(dir, "r")
 		local line = file.readLine()
-		while line ~= nil do
+		repeat
 			lines[cur] = line
 			line = file.readLine()
-		end
+		until not line
 		file.close()
 		return lines
-	else
-		return nil
 	end
+	return nil
 end
 
-function split(str, pat)
-    local t = {}  -- NOTE: use {n = 0} in Lua-5.0
-    if str ~= nil then
-	   local fpat = "(.-)" .. pat
-	   local last_end = 1
-	   local s, e, cap = str:find(fpat, 1)
-	   while s do
-		  if s ~= 1 or cap ~= "" then
-		 table.insert(t,cap)
-		  end
-		  last_end = e+1
-		  s, e, cap = str:find(fpat, last_end)
-	   end
-	   if last_end <= #str then
-		  cap = str:sub(last_end)
-		  table.insert(t, cap)
-	   end
-	else
-		print("##CGE ERROR failed to split ["..str.."] by:"..pat)
-    end
-    return t
+function split(str, sep)
+	local out = {}
+	if sep == nil then
+		sep = "%s"
+	end
+	i=1
+	for st in string.gmatch(str, "([^"..sep.."]+)") do
+		out[i] = st
+    		i = i + 1
+    	end
+	return out
 end
 
 function getTableSize(table)
 	local cur = 0
-	for i,v in ipairs(table) do
-		cur = i
+	for _ in pairs(table) do
+		cur = cur+1
 	end
 	return cur
 end

@@ -1,24 +1,14 @@
-function split(str, pat)
-    local t = {}  -- NOTE: use {n = 0} in Lua-5.0
-    if str ~= nil then
-       local fpat = "(.-)" .. pat
-       local last_end = 1
-       local s, e, cap = str:find(fpat, 1)
-       while s do
-          if s ~= 1 or cap ~= "" then
-         table.insert(t,cap)
-          end
-          last_end = e+1
-          s, e, cap = str:find(fpat, last_end)
-       end
-       if last_end <= #str then
-          cap = str:sub(last_end)
-          table.insert(t, cap)
-       end
-    else
-        print("##ERROR failed to split ["..str.."] by:"..pat)
-    end
-    return t
+function split(str, sep)
+    local out = {}
+	if sep == nil then
+		sep = "%s"
+	end
+	i=1
+	for st in string.gmatch(str, "([^"..sep.."]+)") do
+		out[i] = st
+    		i = i + 1
+    	end
+	return out
 end
 
 local function getTableSize(table)
@@ -34,7 +24,7 @@ function unformatTable(string, join)
 end
 
 function formatTable(table, join, start)
-	if start == nil then start = 1 end
+	if type(start) == "nil" then start = 1 end
 	local str = ""
 	for i=start,#table do
 		if i == start then str = table[i] else str = str..join..table[i] end

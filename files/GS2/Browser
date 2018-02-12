@@ -90,10 +90,9 @@ local function systemInfo()
 
 while true do
   local evt, button, x, y = os.pullEvent("mouse_click")
-  if y == 16 then menu()
-  else -- just wait
-end
-end
+  if y == 16 then
+    menu()
+  end
 end
 
 local function installDisk()
@@ -109,7 +108,7 @@ while true do
     gs.center(8,"No disk found!")
     ee.sleep(3)
     menu()
-end
+  end
 end
 
 local function settings()
@@ -121,18 +120,17 @@ local function settings()
   gs.setBg("green")
   gs.center(14,"Click here to Quit")
 
-while true do local evt, button, x, y = os.pullEvent()
+while true do
+  local evt, button, x, y = os.pullEvent()
   if evt == "mouse_click" then
     if y == 4 then
       gs.clr()
       gs.cursPos(1,1)
       ee.shRun("/rom/programs/shell")
-  elseif y == 14 then
-    menu()
-  else
-end
-end
-end
+    elseif y == 14 then
+      menu()
+    end
+  end
 end
 
 local function updater()
@@ -191,15 +189,24 @@ local function menu()
   gs.center(13," Settings ")
   gs.center(15," Software Update ")
   
-  while true do local evt, button, x, y = os.pullEvent("mouse_click")
-  if y == 3 then gamesApps()
-  elseif y == 5 then installDisk()
-  elseif y == 7 then ee.shRun("pastebin run bj3qj1Pj")
-  elseif y == 9 then powerOff()
-  elseif y == 11 then systemInfo()
-  elseif y == 13 then settings()
-  elseif y == 15 then updater()
-end
+  while true do
+    local _,_,_,y = os.pullEvent("mouse_click")
+    if y == 3 then
+      gamesApps()
+    elseif y == 5 then
+      installDisk()
+    elseif y == 7 then
+      ee.shRun("pastebin run bj3qj1Pj")
+    elseif y == 9 then
+      powerOff()
+    elseif y == 11 then
+      systemInfo()
+    elseif y == 13 then
+      settings()
+    elseif y == 15 then
+      updater()
+    end
+  end
 end
 
 menu()
