@@ -1,49 +1,51 @@
 ---------------------------------------------------
--- GameStation 2 Browser - Credits:
+--  GameStation 2 Browser - Credits:
 --  Strafe: CrazedProgrammer
---  Everything Else: Mr_Iron2
+--  Browser and Apps: Mr_Iron2
 ---------------------------------------------------
 
+local version = 2.0
+-- 2.0 REQUIRES LATEST APIs
+
+os.loadAPI("/GS2/APIs/gs")
+os.loadAPI("/GS2/APIs/ee")
+
 local function powerOff()
-  term.setBackgroundColour(colours.grey)
-  term.setTextColour(colours.white)
-  term.clear()
-  term.setCursorPos(1,8)
-  center(8,"Shutting Down...")
-  sleep(1)
-  term.setBackgroundColour(colours.lightGrey)
-  term.clear()
-  sleep(0.2)
-  term.setBackgroundColour(colours.white)
-  term.clear()
-  sleep(0.1)
+  gs.setTxt("white")
+  gs.clrBg("grey")
+  gs.cursPos(1,8)
+  gs.center(8,"Shutting Down...")
+  ee.sleep(1)
+  gs.clrBg("lightGrey")
+  ee.sleep(0.2)
+  gs.clrBg("white")
+  ee.sleep(0.1)
   os.shutdown()
 end
 
 local function gamesApps()
-  term.setBackgroundColour(colours.blue)
-  term.clear()
-  term.setCursorPos(1,1)
-  term.setTextColour(colours.white)
+  gs.clrBg("blue")
+  gs.cursPos(1,1)
+  gs.setTxt("white")
 
 while true do
   programs = fs.list("/GS2/GamesApps")
-  term.setCursorPos(1,1)
-  term.clear()
+  gs.cursPos(1,1)
+  gs.clr()
   for i=1,#programs do
-    term.setTextColour(colours.white)
-    term.setCursorPos(1,i-scroll)
+    gs.setTxt("white")
+    gs.cursPos(1,i-scroll)
     print(programs[i])
   end
   
   if #programs == 0 then
-    term.setTextColour(colours.white)
-    term.setCursorPos(1,1)
+    gs.setTxt("white")
+    gs.cursPos(1,1)
     print("You have no games.")
   end
   
-  term.setCursorPos(1,19)
-  term.setTextColour(colours.white)
+  gs.cursPos(1,19)
+  gs.setTxt("white")
   write("Click a program to run it. Space to exit.")
   
   os.startTimer(0.3)
@@ -64,112 +66,105 @@ end
     if c <= #programs then
     c = c - scroll
     print(programs[c])
-    term.setTextColour(colours.white)
-    term.clear()
-    term.setCursorPos(1,1)
-    shell.run("/GS2/GamesApps/"..programs[c])
+    gs.setTxt("white")
+    gs.clr()
+    gs.cursPos(1,1)
+    ee.shRun("/GS2/GamesApps/"..programs[c])
     end
   end
 end
 end
 
 local function systemInfo()
-  term.setBackgroundColour(colours.red)
-  term.setTextColour(colours.white)
-  term.clear()
-  center(2,"Information")
-  center(4,"GS2 Model: GS2 SCPH-30000")
-  center(5,"Software version: v1.5")
-  center(7,"Credits:")
-  center(9,"Programming: TheMrIron2")
-  center(10,"Programming: Funey")
-  center(11,"Strafe: CrazedProgrammer")
-  center(14,"Thank you for using your GS2!")
-  center(16,"Click here to go back")
+  gs.clrBg("red")
+  gs.setTxt("white")
+  gs.center(2,"Information")
+  gs.center(4,"GS2 Model: GS2 SCPH-30000")
+  gs.center(5,"Software version: v1.5")
+  gs.center(7,"Credits:")
+  gs.center(9,"Programming: TheMrIron2")
+  gs.center(10,"Programming: Funey")
+  gs.center(11,"Strafe: CrazedProgrammer")
+  gs.center(14,"Thank you for using your GS2!")
+  gs.center(16,"Click here to go back")
 
 while true do
   local evt, button, x, y = os.pullEvent("mouse_click")
   if y == 16 then menu()
-  else -- otherwise, just wait
+  else -- just wait
 end
 end
 end
 
 local function installDisk()
-  term.setBackgroundColour(colours.red)
-  term.setTextColour(colours.white)
-  term.clear()
-  while true do if fs.exists("/disk/") then center(8,"Installing...")
-  shell.run("cp disk/* GS2/GamesApps/")
-  center(10,"Installed!")
-  else center(8,"No disk found!")
-  sleep(3)
-  menu()
+  gs.clrBg("red")
+  gs.setTxt("white")
+  
+while true do
+  if fs.exists("/disk/") then
+    gs.center(8,"Installing...")
+    ee.shRun("cp disk/* GS2/GamesApps/")
+    gs.center(10,"Installed!")
+  else
+    gs.center(8,"No disk found!")
+    ee.sleep(3)
+    menu()
 end
 end
 
 local function settings()
-term.setBackgroundColour(colours.green)
-term.setTextColour(colours.white)
-term.clear()
-center(2,"System Settings")
-term.setBackgroundColour(colours.red)
-center(4," Modify Files ")
-term.setBackgroundColour(colours.green)
-center(14,"Click here to Quit")
+  gs.setTxt("white")
+  gs.clrBg("green")
+  gs.center(2,"System Settings")
+  gs.setBg("red")
+  gs.center(4," Modify Files ")
+  gs.setBg("green")
+  gs.center(14,"Click here to Quit")
 
 while true do local evt, button, x, y = os.pullEvent()
   if evt == "mouse_click" then
     if y == 4 then
-      term.clear()
-      term.setCursorPos(1,1)
-      shell.run("/rom/programs/shell")
+      gs.clr()
+      gs.cursPos(1,1)
+      ee.shRun("/rom/programs/shell")
   elseif y == 14 then
     menu()
-else
+  else
 end
 end
 end
 end
 
 local function updater()
-  local w,h = term.getSize()
-  term.setBackgroundColour(colours.red)
-  term.clear()
-  term.setBackgroundColour(colours.white)
-  term.setCursorPos(1,1)
-  term.clearLine()
-  term.setTextColour(colours.blue)
-  center(1,"GameStation 2 Updater v1")
-  term.setBackgroundColour(colours.red)
-  term.setTextColour(colours.white)
-  term.setCursorPos(1,3)
+  local w,h = gs.getSize()
+  gs.clr("red")
+  gs.setBg("white")
+  gs.cursPos(1,1)
+  gs.clrLine()
+  gs.setTxtColour("blue")
+  gs.center(1,"GameStation 2 Updater v1")
+  gs.setBg("red")
+  gs.setTxt("white")
+  gs.cursPos(1,3)
   print("   Install")
   print("   Exit")
-  center(7,"To update, get an official GS2 update disk.")
-  center(8,"disk and press 'Install'.")
+  gs.center(7,"To update, get an official GS2 update disk.")
+  gs.center(8,"disk and press 'Install'.")
 
 while true do local evt, button, x, y = os.pullEvent("mouse_click")
   if y == 3 then
-  if not fs.exists("/disk/.flashUpdate/") then  -- Used for disk updates or other purposes to install code
-  center(8,"Invalid Disk!")
-  menu()
-  elseif fs.exists("disk/boot.elf") then shell.run("disk/boot.elf") -- Run a game
-  elseif fs.exists("/disk/.flashUpdate/") and fs.isDir("/disk/.flashUpdate") then
-  for i,v in pairs(fs.list("/")) do
-    if v == "rom" then
-    elseif v == "disk" then
-    elseif v == "moarp" then
-    else
-      fs.delete("/"..v)
-    end
-  end
-  shell.run("cp /disk/.flashUpdate/* /")
-  end
-  term.clear()
-  centerSlow(8,"Installed!")
-  sleep(0.9)
-  menu()
+    if not fs.exists("/disk/.flashUpdate/") then  -- Used for disk updates or other purposes to install code
+    gs.center(8,"Invalid Disk!")
+    menu()
+  elseif fs.exists("disk/boot.elf") then
+    ee.shRun("disk/boot.elf") -- Run a disk
+  
+  elseif fs.exists("/disk/.flashUpdate/") then
+    ee.shRun("/disk/.flashUpdate/boot.elf")
+    gs.clr()
+    gs.centerSlow(8,"Installed!")
+    ee.sleep(1)
+    menu()
    elseif y == 4 then menu()
     else end
      end
@@ -178,29 +173,28 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
   end
   
 local function menu()
-  term.setBackgroundColour(colours.red)
-  term.clear()
-  term.setCursorPos(1,1)
-  term.setBackgroundColour(colours.white)
-  term.clearLine()
-  term.setTextColour(colours.red)
-  center(1,"GameStation 2 Browser")
-  term.setBackgroundColour(colours.red)
-  term.setCursorPos(1,3)
-  term.setTextColour(colours.blue)
-  term.setBackgroundColour(colours.white)
-  center(3," Games and Apps ")
-  center(5," Install ")
-  center(7," Strafe ")
-  center(9," Shutdown ")
-  center(11," Information ")
-  center(13," Settings ")
-  center(15," Software Update ")
+  gs.clrBg("red")
+  gs.setCursorPos(1,1)
+  gs.setBg("white")
+  gs.clrLine()
+  gs.setTxt("red")
+  gs.center(1,"GameStation 2 Browser")
+  gs.setBg("red")
+  gs.cursPos(1,3)
+  gs.setTxt("blue")
+  gs.setBg("white")
+  gs.center(3," Games and Apps ")
+  gs.center(5," Install ")
+  gs.center(7," Strafe ")
+  gs.center(9," Shutdown ")
+  gs.center(11," Information ")
+  gs.center(13," Settings ")
+  gs.center(15," Software Update ")
   
   while true do local evt, button, x, y = os.pullEvent("mouse_click")
   if y == 3 then gamesApps()
   elseif y == 5 then installDisk()
-  elseif y == 7 then shell.run("pastebin run bj3qj1Pj")
+  elseif y == 7 then ee.shRun("pastebin run bj3qj1Pj")
   elseif y == 9 then powerOff()
   elseif y == 11 then systemInfo()
   elseif y == 13 then settings()
