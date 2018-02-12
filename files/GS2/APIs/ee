@@ -87,21 +87,20 @@ pullEvtRaw = os.pullEventRaw
 queueEvt = os.queueEvent
 
 function reload()
-  os.unloadAPI("/GS2/APIs/ee")
   os.loadAPI("/GS2/APIs/ee")
-  if debug = true then
-  print("EE reloaded!")
-  else end
+  if debug then
+    print("EE reloaded!")
+  end
 end
 
 function info()
   print("Emotion Engine CPU API")
   print("API version: v"...version..." ")
-  if debug = true then
-  print("Debug mode: Enabled")
+  if debug then
+    print("Debug mode: Enabled")
   else
-  print("Debug mode: Disabled")
-end
+    print("Debug mode: Disabled")
+  end
 end
 
 startTimer = os.startTimer
