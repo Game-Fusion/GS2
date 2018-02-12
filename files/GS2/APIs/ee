@@ -2,10 +2,8 @@
 -- Powerful CPU API for GS2
 -- Based on C64 CPU v1.1
 
-local version = v1.1
-local debug = false
-
--- Enable debug for extra info eg. telling you when EE reloads
+local version = 1.1
+local debug = false -- Enable debug for extra info eg. telling you when EE reloads
 
 -- Basic math functionality
 
@@ -98,7 +96,7 @@ end
 
 function info()
   print("Emotion Engine CPU API")
-  print("API version: "...version..." ")
+  print("API version: v"...version..." ")
   if debug = true then
   print("Debug mode: Enabled")
   else
