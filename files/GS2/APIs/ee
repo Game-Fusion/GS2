@@ -89,8 +89,8 @@ pullEvtRaw = os.pullEventRaw
 queueEvt = os.queueEvent
 
 function reload()
-  os.unloadAPI("/APIs/ee")
-  os.loadAPI("/APIs/ee")
+  os.unloadAPI("/GS2/APIs/ee")
+  os.loadAPI("/GS2/APIs/ee")
   if debug = true then
   print("EE reloaded!")
   else end
