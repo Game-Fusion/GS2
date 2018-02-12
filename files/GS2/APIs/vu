@@ -5,8 +5,28 @@
 -- Special thanks to Advanced Vector API for most of this vector code
 -- http://www.computercraft.info/forums2/index.php?/topic/3752-advanced-vector-api-v11/
 
+local version = 1.0
 
-local version = v1.0
+local debug = false
+-- debug currently does nothing useful: devs could use it though
+
+local function reload()
+  os.unloadAPI("/GS2/APIs/vu")
+  os.loadAPI("/GS2/APIs/vu")
+  if debug = true then
+  print("VUs reloaded!")
+  else end
+end
+
+local function info()
+  print("Vector Unit coprocessor API")
+  print("API version: v"...version..." ")
+  if debug = true then
+  print("Debug mode: Enabled")
+  else
+  print("Debug mode: Disabled")
+end
+end
 
 new = vector.new
 
@@ -413,3 +433,25 @@ end
 isVector = function(v)
   return getmetatable(v) == vmetatable
 end
+
+-- Bit API for bit manipulation
+
+blshift = bit.blshift -- Shifts a number left by a specified number of bits
+
+brshift = bit.brshift -- Shifts a number right by a specified number of bits
+
+blogic_rshift = bit.blogic_rshift -- Shifts a number right logically by a specified number of bits
+
+bxor = bit.bxor -- Computes the bitwise exclusive OR of two numbers
+
+bor = bit.bor --  Computes the bitwise inclusive OR of two numbers
+
+band = bit.band -- Computes the bitwise AND of two numbers
+
+bnot = bit.bnot -- Computes the bitwise NOT of a number
+
+-- Parallel functions
+
+waitForAny = parallel.waitForAny
+
+waitForAll = parallel.waitForAll
