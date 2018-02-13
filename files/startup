@@ -10,6 +10,46 @@ if peripheral.find("monitor") then
   shell.run("monitor back startup")
 
 elseif not term.isColour then
+
+-- Colour-monochrome wrapper by Gonow32
+
+local current = term.current()
+term.redirect(window.create(current,1,1,current.getSize()))
+
+if not term.isColour() then
+  local oldback = term.setBackgroundColour
+  function term.setBackgroundColor(colour)
+    if colour == 1 then
+      oldback(colour)
+    else
+      oldback(colours.black)
+    end
+  end
+
+  term.setBackgroundColour = term.setBackgroundColor
+
+  local oldtext = term.setTextColour
+  function term.setTextColor(colour)
+    if colour == 32768 then
+      oldtext(colour)
+    else
+      oldtext(colours.white)
+    end  
+  end
+end
+
+gs.setTxt("white")
+gs.clrBg("red")
+gs.centerSlow(6,"Game Fusion Presents...")
+sleep(1.5)
+gs.clr()
+gs.centerSlow(6,"GameStation 2.")
+sleep(1)
+gs.center(7,"The ultimate CC console.")
+sleep(2)
+shell.run("/GS2/Browser")
+          
+else 
   gs.setTxt("white")
   gs.clrBg("red")
   gs.centerSlow(6,"Game Fusion Presents...")
@@ -20,16 +60,4 @@ elseif not term.isColour then
   gs.center(7,"The ultimate CC console.")
   sleep(2)
   shell.run("/GS2/Browser")
-          
-else 
-  gs.setTxt("black")
-  gs.clrBg("white")
-  gs.centerSlow(6,"Game Fusion Presents...")
-  sleep(1.5)
-  gs.clr()
-  gs.centerSlow(6,"GameStation 2.")
-  sleep(1)
-  gs.center(7,"The ultimate CC console.")
-  sleep(2)
-  shell.run("/GS2/Mono/Browser")
 end
