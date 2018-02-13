@@ -1,14 +1,19 @@
----------------------------------------------------
---  GameStation 2 Browser - Credits:
---  Strafe: CrazedProgrammer
---  Browser and Apps: Mr_Iron2
----------------------------------------------------
+--[[
+
+GameStation 2 Browser 
+
+Credits:
+
+Strafe: CrazedProgrammer
+Browser and Apps: Mr_Iron2
+Code cleanup + fixes: Ale32bit
+
+--]]
 
 local version = 2.0
--- 2.0 REQUIRES LATEST APIs
 
 os.loadAPI("/GS2/APIs/gs")
---os.loadAPI("/GS2/APIs/ee")
+--os.loadAPI("/GS2/APIs/ee") --unused
 
 local function powerOff()
   gs.setTxt("white")
@@ -155,7 +160,7 @@ while true do local evt, button, x, y = os.pullEvent("mouse_click")
     gs.center(8,"Invalid Disk!")
     menu()
   elseif fs.exists("disk/boot.elf") then
-    shell.run("disk/boot.elf") -- Run a disk
+    shell.run("disk/boot.elf")
   
   elseif fs.exists("/disk/.flashUpdate/") then
     shell.run("/disk/.flashUpdate/boot.elf")
