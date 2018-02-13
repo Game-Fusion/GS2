@@ -1,24 +1,30 @@
----------------------------------------------------
---  GameStation 2 Browser - Credits:
---  Strafe: CrazedProgrammer
---  Browser and Apps: Mr_Iron2
----------------------------------------------------
+--[[
+
+GameStation 2 Browser 
+
+Credits:
+
+Strafe: CrazedProgrammer
+Browser and Apps: Mr_Iron2
+Code cleanup + fixes: Ale32bit
+
+--]]
 
 local version = 2.0
--- 2.0 REQUIRES LATEST APIs
 
 os.loadAPI("/GS2/APIs/gs")
---os.loadAPI("/GS2/APIs/ee")
+--os.loadAPI("/GS2/APIs/ee") --unused
 
 local function powerOff()
-  gs.setTxt("black")
-  gs.clrBg("white")
+  gs.setTxt("white")
+  gs.clrBg("grey")
+  gs.cursPos(1,8)
   gs.center(8,"Shutting Down...")
   sleep(1)
-  gs.setTxt("white")
-  gs.clrBg("black")
-  gs.center(8,"Shutting Down...")
-  sleep(0.25)
+  gs.clrBg("lightGrey")
+  sleep(0.2)
+  gs.clrBg("white")
+  sleep(0.1)
   os.shutdown()
 end
 
@@ -72,7 +78,7 @@ end
 end
 
 local function systemInfo()
-  gs.clrBg("black")
+  gs.clrBg("grey")
   gs.setTxt("white")
   gs.center(2,"Information")
   gs.center(4,"GS2 Model: GS2 SCPH-50000")
@@ -108,11 +114,10 @@ while true do
 end
 
 local function settings()
-  gs.setTxt("black")
-  gs.clrBg("white")
-  gs.center(2,"System Settings")
-  gs.setBg("black")
   gs.setTxt("white")
+  gs.clrBg("grey")
+  gs.center(2,"System Settings")
+  gs.setBg("lightGrey")
   gs.center(4,"1. Modify Files ")
   gs.center(14,"Press space to Quit")
 
@@ -130,14 +135,14 @@ end
 
 local function updater()
   local w,h = gs.getSize()
-  gs.clr("white")
-  gs.setBg("black")
+  gs.clr("grey")
+  gs.setBg("white")
   gs.cursPos(1,1)
   gs.clrLine()
-  gs.setTxtColour("white")
-  gs.center(1,"GameStation 2 Updater v1")
-  gs.setBg("white")
   gs.setTxt("black")
+  gs.center(1,"GameStation 2 Updater v1")
+  gs.setBg("grey")
+  gs.setTxt("white")
   gs.cursPos(1,3)
   print("1.  Install")
   print("2.  Exit")
@@ -166,16 +171,15 @@ while true do local evt, button, key = os.pullEventRaw()
   end
   
 local function menu()
-  gs.clrBg("white")
+  gs.clrBg("grey")
   gs.cursPos(1,1)
-  gs.setBg("black")
-  gs.clrLine()
-  gs.setTxt("white")
-  gs.center(1, "GameStation 2 Browser")
   gs.setBg("white")
+  gs.clrLine()
+  gs.setTxt("black")
+  gs.center(1, "GameStation 2 Browser")
   gs.cursPos(1,3)
   gs.setTxt("black")
-  gs.setBg("white")
+  gs.setBg("lightGrey")
   gs.center(3,"1. Games and Apps ")
   gs.center(5,"2. Install ")
   gs.center(7,"3. Strafe ")
