@@ -13,7 +13,6 @@ Code cleanup + fixes: Ale32bit
 local version = 2.0
 
 os.loadAPI("/GS2/APIs/gs")
---os.loadAPI("/GS2/APIs/ee") --unused
 
 local function powerOff()
   gs.setTxt("white")
@@ -81,7 +80,7 @@ end
 end
 
 local function systemInfo()
-  gs.clrBg("red")
+  gs.clrBg("grey")
   gs.setTxt("white")
   gs.center(2,"Information")
   gs.center(4,"GS2 Model: GS2 SCPH-50000")
@@ -91,18 +90,18 @@ local function systemInfo()
   gs.center(10,"Programming: Funey")
   gs.center(11,"Strafe: CrazedProgrammer")
   gs.center(14,"Thank you for using your GS2!")
-  gs.center(16,"Click here to go back")
+  gs.center(16,"Press space to go back")
 
 while true do
-  local evt, button, x, y = os.pullEvent("mouse_click")
-  if y == 16 then
+  local evt, button, key = os.pullEventRaw()
+  if key == keys.space then
     menu()
   end
 end
 
 local function installDisk()
-  gs.clrBg("red")
-  gs.setTxt("white")
+  gs.clrBg("white")
+  gs.setTxt("black")
   
 while true do
   if fs.exists("/disk/") then
@@ -118,21 +117,19 @@ end
 
 local function settings()
   gs.setTxt("white")
-  gs.clrBg("green")
+  gs.clrBg("grey")
   gs.center(2,"System Settings")
-  gs.setBg("red")
-  gs.center(4," Modify Files ")
-  gs.setBg("green")
-  gs.center(14,"Click here to Quit")
+  gs.setBg("lightGrey")
+  gs.center(4,"1. Modify Files ")
+  gs.center(14,"Press space to Quit")
 
 while true do
-  local evt, button, x, y = os.pullEvent()
-  if evt == "mouse_click" then
-    if y == 4 then
+  local evt, button, key = os.pullEventRaw()
+  if key == keys.one then
       gs.clr()
       gs.cursPos(1,1)
       shell.run("/rom/programs/shell")
-    elseif y == 14 then
+    elseif key == keys.space then
       menu()
     end
   end
@@ -140,21 +137,21 @@ end
 
 local function updater()
   local w,h = gs.getSize()
-  gs.clrBg("red")
+  gs.clrBg("grey")
   gs.setBg("white")
   gs.cursPos(1,1)
   gs.clrLine()
-  gs.setTxt("blue")
+  gs.setTxt("grey")
   gs.center(1,"GameStation 2 Updater v1")
-  gs.setBg("red")
+  gs.setBg("grey")
   gs.setTxt("white")
   gs.cursPos(1,3)
-  print("   Install")
-  print("   Exit")
+  print("   1. Install")
+  print("   2. Exit")
   gs.center(7,"To update, get an official GS2 update")
-  gs.center(8,"disk and press 'Install'.")
+  gs.center(8,"disk and press 1.")
 
-while true do local evt, button, x, y = os.pullEvent("mouse_click")
+while true do local evt, button, y = os.pullEvent("mouse_click")
   if y == 3 then
     if not fs.exists("/disk/.flashUpdate/") then  -- Used for disk updates or other purposes to install code
     gs.center(8,"Invalid Disk!")
@@ -186,30 +183,48 @@ local function menu()
   gs.cursPos(1,3)
   gs.setTxt("blue")
   gs.setBg("white")
-  gs.center(3," Games and Apps ")
-  gs.center(5," Install ")
-  gs.center(7," Strafe ")
-  gs.center(9," Shutdown ")
-  gs.center(11," Information ")
-  gs.center(13," Settings ")
-  gs.center(15," Software Update ")
+  gs.center(3,"1. Games and Apps ")
+  gs.center(5,"2. Install ")
+  gs.center(7,"3. Strafe ")
+  gs.center(9,"4. Shutdown ")
+  gs.center(11,"5. Information ")
+  gs.center(13,"6. Settings ")
+  gs.center(15,"7. Software Update ")
   
   while true do
-    local _,_,_,y = os.pullEvent("mouse_click")
-    if y == 3 then
-      gamesApps()
-    elseif y == 5 then
-      installDisk()
-    elseif y == 7 then
-      shell.run("pastebin run bj3qj1Pj")
-    elseif y == 9 then
-      powerOff()
-    elseif y == 11 then
-      systemInfo()
-    elseif y == 13 then
-      settings()
-    elseif y == 15 then
-      updater()
+    local evt, key, y = os.pullEventRaw()
+    if evt == "mouse_click" then
+      if y == 3 then
+       gamesApps()
+      elseif y == 5 then
+       installDisk()
+      elseif y == 7 then
+       shell.run("pastebin run bj3qj1Pj")
+      elseif y == 9 then
+        powerOff()
+     elseif y == 11 then
+        systemInfo()
+      elseif y == 13 then
+        settings()
+      elseif y == 15 then
+        updater()
+     end
+     
+    elseif evt == "key" then
+      if key == keys.one then
+        gamesApps()
+      elseif key == keys.two then
+        installDisk()
+      elseif key == keys.three then
+        shell.run("pastebin run bj3qj1Pj")
+      elseif key == keys.four then
+        powerOff()
+      elseif key == keys.five then
+        systemInfo()
+      elseif key == keys.six then
+        settings()
+      elseif key == keys.seven then
+        updater()
     end
   end
 end
