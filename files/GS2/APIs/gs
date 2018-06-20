@@ -6,7 +6,17 @@ with some additions and changes.
 By TheMrIron2
 --]]
 
-local version = 1.0
+local version = 1.1
+
+local debug = false
+-- disabled by default 
+
+local function reload()
+  os.loadAPI("/GS2/APIs/gs")
+  if debug then
+    print("GS reloaded!")
+  end
+end
 
 -- Term functions
 
@@ -129,3 +139,9 @@ end
 slowWrite = textutils.slowWrite
 
 slowPrint = textutils.slowPrint
+
+-- Parallel functions
+
+waitForAny = parallel.waitForAny
+
+waitForAll = parallel.waitForAll
