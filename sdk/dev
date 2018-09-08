@@ -1,0 +1,3 @@
+-- Set dev path
+
+shell.setPath(shell.path()..":/.gs2/sdk/bin")
