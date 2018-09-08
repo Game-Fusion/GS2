@@ -52,6 +52,35 @@ vectors instead of tables in certain situations. Among other
 things, vectors can be useful to aid in creating navigation
 programs using GPS coordinates. By making good use of vectors,
 code can be cleaner and easier to follow.
+
+---
+Networking:
+
+The GS2 has a special DNAS service designed to allow
+developers to authenticate or otherwise pass through an
+official server. This gives a layer of security and assurance
+but is also completely optional. Read the sdk documentation's
+piece on networking and you can see how easy it is to
+send some requests to DNAS, and it also has utility programs
+available on the GitHub!
+
+---
+Footnote
+
+The GS2 is a flexible machine with APIs and services that will
+allow you to do anything you can imagine doing in CC with ease.
+Its APIs allow for concise code and anyone can have immediate
+access to the GS2 SDK, and not only that - anyone has permission
+to modify it and redistribute a "homebrew" version of the GS2SDK
+as well as publishing their own homebrew games, with official
+licensing available upon request! The only difference is that 
+your game will be added to the list of licensed GS2 games.
+
+The GS2 is a console that allows you to make anything, so with
+that in mind, we've done our best to help you with your
+programming work with our documentation; we hope you enjoy
+working with the GS2!
+
 --]]
 
 
