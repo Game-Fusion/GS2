@@ -1,0 +1,132 @@
+--[[
+
+Basic documentation for high resolution
+graphics on GS2, utilising the GS
+API functions at developers'
+disposal to not only make life easier,
+but to demonstrate practical use cases
+of the GS and to give developers an
+idea of how to set up their programs
+to be as graphically flexible as
+possible.
+
+Written by Mr_Iron2, (C) 2018
+
+-----
+
+The key to the best possible graphical
+experience is to make things dynamic
+wherever possible. To start, instead of
+setting predefined resolution variables
+(designed around a typical 51x19 CC
+computer screen) we should instead get
+the size of the current window.
+
+To do this with GS, simply call:
+local w,h = gs.winSize()
+
+This command gets the size of the current
+window, and assigns the resolutions to the
+"w" and "h" variables. For example, on a
+51x19 display, this would mean w = 51 and
+h = 19. This is far more efficient than
+hard-coding resolution values.
+
+Now you can design your program around
+these variables. For example, the GS
+"center" code averages the center point
+of the screen based on the length of the
+text and the width of the screen. Here's
+the source code:
+
+function center(y, string)
+  local x = (w/2)-(#string/2)
+  term.setCursorPos(x,y)
+  print(string)
+end
+
+What this function is doing is taking the
+"W" and "H" parameters we got earlier from
+gs.winSize() and using them in a practical
+situation. To get X, the horizontal point
+the cursor is set to, it divides the horizontal
+resolution (W ie. width) by two, and subtracts
+the length of the text. It then takes a value
+for Y from the user, as you can see below, 
+and sets the cursor accordingly to print the
+text.
+
+gs.center(8, "Hello world!")
+
+That's not so difficult, is it? This center
+code is a great example of how the program
+can be adapted to adjust itself dynamically
+based on the window/screen resolution. It 
+will always find the horizontal center because
+it uses a dynamic width value given to us by
+gs.winSize(), so this allows us to use this code
+at any resolution we like!
+
+-----
+
+Adjusting resolution for monitors
+
+By default, monitors have a text scale of 1.
+Using the default text scale, a single monitor
+has a resolution of 7 pixels horizontally by 5
+pixels vertically (7x5). With the default text
+scale, monitor borders take up two pixels on the
+left and right sides, and one pixel on the top
+and bottom sides. Using the default text
+scale, the largest possible monitor cluster - 8
+blocks wide and 6 blocks tall - has a resolution
+of 70x40. However, this isn't the highest we can go.
+The text scale of monitor.setTextScale can be increased
+or decreased in increments of 0.5, and the highest
+resolution setting is achieved when the text scale is set
+to 0.5. Under this setting, a single monitor has a
+resolution of 15x10. At this scale, monitor borders take
+up three pixels on the left and right sides, and two
+pixels on the top and bottom sides.
+
+Using the 0.5 text scale for maximum resolution, the
+largest possible monitor cluster has a total resolution
+of 162 pixels horizontally by 80 pixels vertically.
+That's a lot of hi-res potential! So using the
+techniques mentioned before, we can do a lot of cool
+stuff. To set the scale of the text on a monitor, use
+the following GS command:
+
+gs.monTxtScale(size)
+
+Simple enough, right? This encapsulates a few lines of
+code and handles what the current display is before calling
+the generic setTextScale command. So by setting this to 0.5
+we can get the highest possible resolution out of our
+GS2. By using this with our above command, we can get the best
+experience with a dynamic way of handling the resolution and
+getting the most pixels out of a ComputerCraft monitor. 
+What's important to note is that this command doesn't simply
+change the size of text; it also changes the size of pixels
+drawn by paintutils, so this is a really powerful command and
+it's strongly recommended when using a monitor! To wrap the
+GS2 to a monitor, use the following code:
+
+local monitor = peripheral.wrap( "top" )
+
+(NOTE: As of v1.2, GS has the "gs.wrap(side)" command as well.
+However, this is a new version of GS, and as such it is advised
+that if you use this command instead, you should ensure the GS2's
+GS API is v1.2 or later; local version should return the version.)
+
+This wraps any code with "monitor" before it to the wrapped display.
+For example, monitor.write("Hello!")
+(NOTE: for gs.wrap(), the syntax is mon.write() instead)
+So by combining these functions, you can get a great high res
+experience from ComputerCraft! The rest is up to you; the above
+will give you a framework to build some high-res code around.
+Happy programming!
+
+--]]
+
+print("Edit me instead to read!")
