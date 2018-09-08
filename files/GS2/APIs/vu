@@ -27,6 +27,45 @@ local function info()
   end
 end
 
+-- Multishell support for multithreading/multishell
+-- Multishell commands begin with t to indicate threading/multishell + to avoid conflicts
+
+if multishell then
+  tGetTitle = multishell.getTitle
+  tGetCount = multishell.getCount
+  tLaunch = multishell.launch
+  tSetFocus = multishell.setFocus
+  tSetTitle = multishell.setTitle
+  tGetFocus = multishell.getFocus
+  
+else
+  tGetTitle = function()
+    return ""
+  end
+  
+  tGetCount = function()
+    return 1
+  end
+  
+  tLaunch = function()
+    return false
+  end
+  
+  tSetFocus = function()
+    return true
+  end
+  
+  tSetTItle = function()
+    return false
+  end
+  
+  tGetFocus = function()
+    return 1
+  end
+end
+
+-- Vector functions
+
 new = vector.new
 
 local vector = {
@@ -438,3 +477,17 @@ end
 waitForAny = parallel.waitForAny
 
 waitForAll = parallel.waitForAll
+
+-- Other functions
+
+run = shell.run -- No os.run equivalent to avoid confusion, as shell.run is sufficient most of the time and EE has os.run
+
+sleep = os.sleep
+
+serialize = textutils.serialize
+
+unserialize = textutils.unserialize
+
+serializeJSON = textutils.serializeJSON
+
+urlEncode = textutils.urlEncode
