@@ -1,0 +1,40 @@
+--[[
+
+Guide to networking on the GS2
+written by Mr_Iron2.
+
+-----
+
+The GS2 is known for, among other things,
+its ambitious forays into servers and
+networking at launch. It tried everything
+from a game distribution platform to a game
+streaming service (which is now used in
+Revolution's Shield device) and even the
+famous DNAS system, an optional authentication
+server which games can pass through.
+
+---
+DNAS
+
+DNAS (Dynamic Network Authentication Service)
+is a GS2 service which games can pass through
+to get information about the GS2 and/or to
+authenticate games connecting to servers or P2P.
+To send a request to the DNAS servers, simply
+do the following:
+
+  local modem = peripheral.find("modem")
+  modem.open(661)
+  modem.transmit(661, 661, {sType = "status"})
+  
+This sends a status request to the DNAS servers
+to check whether DNAS is still online, temporarily
+down or permanently terminated. Simple, right?
+
+DNAS also has a utility, which can be found on
+the GS2 GitHub page, as well as a Network Center
+program so you can configure and test your
+connection to DNAS. Handy!
+
+--]]
