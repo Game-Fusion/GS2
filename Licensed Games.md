@@ -1,9 +1,6 @@
-#GameStation 2
-#Officially Licensed Games
+# Licensed Games
 
-These are all officially licensed/approved games currently available on the GameStation 2.
-#Note:
-This does NOT include the big library of games available on Strafe, just commercially available [on physical media] games.
+These are all officially licensed and approved games currently available on the GameStation 2.
 
 Games:
 
@@ -17,4 +14,7 @@ Games:
 
 - CCSand
 
-^Supports NetPlay
+^ Multiplayer-ready with DNAS
+
+### Note:
+This does NOT include the big library of games available on Strafe, just commercially available [on physical media] games. 
