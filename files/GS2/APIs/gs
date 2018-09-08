@@ -3,10 +3,12 @@ Graphics Synthesizer API
 
 Based on Commander 64 GPU API
 with some additions and changes.
-By TheMrIron2
+
+By TheMrIron2 (Mr_Iron2)
+
 --]]
 
-local version = 1.1
+local version = 1.2
 
 local debug = false
 -- disabled by default 
@@ -110,6 +112,11 @@ function monTxtScale(size)
   if func then
     func(size)
   end
+end
+
+function wrap(side)
+  local mon = peripheral.wrap(side)
+  -- use command like mon.write("hi")
 end
 
 -- Paintutils derived commands
